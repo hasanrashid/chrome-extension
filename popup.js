@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function(){
  
   document.querySelectorAll('input[type="range"]').forEach(function(element) {
     element.addEventListener('mouseup',function(e){
-      document.getElementById('bgcolor').innerText = e.target.value;
       e.currentTarget.previousSibling.previousSibling.value = e.target.value;
     });
   }, this);
