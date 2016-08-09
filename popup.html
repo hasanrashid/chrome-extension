@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head></head>
+    <style>
+        body{
+            background-color: grey;
+            width: 600px;
+            height: 300px;
+        }
+       input[type="range"]{ 
+            position:relative;
+            top: 7px;
+        }
+    </style>
+    <body>
+           
+        <p>I am popup.html</p>
+        <button id="btn">hello</button><br>
+            msg from background.js: <div id="div"></div>
+        <div id="bgcolor"></div>
+       <br/>
+        <fieldset id="bw">
+            <legend>
+                 <input type="radio" name="colors" value="rgb"></input>
+            </legend>
+            <label>Make background darker/lighter</label><br/>
+            <input type="text" size="3" maxlength="3"/>
+            <input type="range" max="255" min="0"/>
+        </fieldset>
+       <br/>
+        <fieldset id="rgb">
+            <legend><input type="radio" name="colors" value="bw"></input></legend>
+            <label>Change RGB values individually</label><br/>
+            <input type="text" class="red" size="3" maxlength="3"/>
+            <input type="range" class="red" max="255" min="0"><br/>
+            <input type="text" class="green" size="3" maxlength="3"/>
+            <input type="range" class="green" max="255" min="0"><br/>
+            <input type="text" class="blue" size="3" maxlength="3"/>
+            <input type="range" class="blue" max="255" min="0"><br/>
+        </fieldset>
+        
+        
+        <script type="text/javascript" src="popup.js"></script>
+    </body>
+</html>
