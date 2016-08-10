@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', function(){
       e.currentTarget.previousSibling.previousSibling.value = e.target.value;
     });
   }, this);
- /* document.querySelectorAll('input[type="radio"]').forEach(function(element) {
+  document.querySelectorAll('input[type="radio"]').forEach(function(element) {
     element.addEventListener('click',function(e){
       document.getElementById(e.currentTarget.getAttribute('value')).setAttribute('disabled','true');
       //document.getElementById('rgb').setAttribute('disabled','true');
       ((e.currentTarget.parentNode).parentNode).setAttribute('disabled','false');
     });
-  }, this);*/
+  }, this);
 });
 
 
