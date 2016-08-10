@@ -23,21 +23,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
   document.querySelectorAll('input[type="radio"]').forEach(function(element) {
     element.addEventListener('change',function(e){
-      //e.stopPropagation();
       console.log(e.currentTarget);
       document.getElementById(e.currentTarget.value).disabled = true;
       ((e.currentTarget.parentNode).parentNode).disabled = false;
-      //console.log(e.currentTarget.getAttribute('value'));
-     // (e.currentTarget.parentNode).parentNode.disabled=false;
-      //document.getElementById('rgb').setAttribute('disabled','true');
-//      ((e.currentTarget.parentNode).parentNode).setAttribute('disabled','false');
     });
-/*    element.addEventListener('blur',function(e){
-      e.stopPropagation();
-      console.log(e.currentTarget);
-      //console.log(e.currentTarget.getAttribute('value'));
-     // (e.currentTarget.parentNode).parentNode.disabled=false;
-    });*/
   }, this);
 });
 
