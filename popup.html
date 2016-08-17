@@ -15,6 +15,7 @@
     <body>
            
         <button id="btn">Get Background Color</button><br>
+        <div id="x"></div>
        <br/>
         <fieldset id="bw">
             <legend>
@@ -28,12 +29,12 @@
         <fieldset id="rgb">
             <legend><input type="radio" name="colors" value="bw"></input></legend>
             <label>Change RGB values individually</label><br/>
-            <input type="text" class="h" size="3" maxlength="3"/>
-            <input type="range" step="0.01" class="h" max="360" min="0"><br/>
-            <input type="text" class="s" size="3" maxlength="3"/>
-            <input type="range" step="0.01" class="s" max="100" min="0"><br/>
-            <input type="text" class="l" size="3" maxlength="3"/>
-            <input type="range" step="0.01" class="l" max="100" min="0"><br/>
+            <input type="text" id="h-text" class="h" size="3" maxlength="3"/>
+            <input type="range" id="h-range" step="0.01" class="h" max="360" min="0"><br/>
+            <input type="text" id="s-text" class="s" size="3" maxlength="3"/>
+            <input type="range" id="s-range" step="0.01" class="s" max="100" min="0"><br/>
+            <input type="text" id="l-text" class="l" size="3" maxlength="3"/>
+            <input type="range" step="0.01" id="l-range" class="l" max="100" min="0"><br/>
         </fieldset>
         
         

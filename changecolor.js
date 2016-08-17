@@ -17,8 +17,13 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       var blue = parseInt(rgbColors.blue);
 
       hslColor = rgbToHsl(red,green,blue);
-      console.log(hslColor);
       sendResponse(hslColor);
+
+  }
+  if(message.msg=="setcolor"){
+    console.log(message.hslc);
+    //document.getElementById("x").innerText = message.hslc;
+    document.body.style.backgroundColor = 'hsl('+message.hslc.h+', '+message.hslc.s +'%, '+message.hslc.l+'%)';
 
   }
   return true;
