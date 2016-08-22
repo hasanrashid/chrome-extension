@@ -6,25 +6,21 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       /*Get the background color of the window in this script. This will return the 
       backgroundcolor of the tab. Getting the background color from popup.js will 
       return the color of popup.html*/
-      var bgc = window.getComputedStyle(document.body, null).backgroundColor;
-      var subs = bgc.substring(bgc.indexOf('(')+1,bgc.indexOf(')'));
-      var colors = subs.split(', ');
-      var fc = window.getComputedStyle(document.body, null).color;
-      var rgbColors = {red: colors[0], green: colors[1], blue: colors[2]};
+      var bgColorFromPage = window.getComputedStyle(document.body, null).backgroundColor;
+      var bgColorRGBValues = (bgColorFromPage.substring(bgColorFromPage.indexOf('(')+1,bgColorFromPage.indexOf(')'))).split(', ');
+      var fontColorFromPage = window.getComputedStyle(document.body, null).color;
+      var fontColorRGBValues = (fontColorFromPage.substring(fontColorFromPage.indexOf('(')+1,fontColorFromPage.indexOf(')'))).split(', ');
 
-      var red = parseInt(rgbColors.red);
-      var green = parseInt(rgbColors.green);
-      var blue = parseInt(rgbColors.blue);
-
-      hslColor = rgbToHsl(red,green,blue);
-      sendResponse(hslColor);
+      bgColorHSL = rgbToHsl(parseInt(bgColorRGBValues[0]),parseInt(bgColorRGBValues[1]),parseInt(bgColorRGBValues[2]));
+      fontColorHSL = rgbToHsl(parseInt(fontColorRGBValues[0]),parseInt(fontColorRGBValues[1]),parseInt(fontColorRGBValues[2]));
+      
+      var colors = {backgroundcolor: bgColorHSL, fontcolor: fontColorHSL};
+      sendResponse(colors);
 
   }
   if(message.msg=="setcolor"){
-    console.log(message.hslc);
-    //document.getElementById("x").innerText = message.hslc;
-    document.body.style.backgroundColor = 'hsl('+message.hslc.h+', '+message.hslc.s +'%, '+message.hslc.l+'%)';
-
+    console.log(message.colors);
+      document.body.style.backgroundColor = 'hsl('+message.colors.h+', '+message.colors.s +'%, '+message.colors.l+'%)';
   }
   return true;
 });
