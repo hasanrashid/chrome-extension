@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function(){
-  var colors = '';
+  var colors = {h:'',s:'',l:''};
     document.getElementById('btn').addEventListener('click',function(e){
       chrome.tabs.query({active: true, currentWindow: true},function(tabs){
         /*tabs.sendMessage sends message to content script that are part of the present tab 
@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function(){
         response object contains two more objects, backgroundcolor and fontcolor in HSL format*/
      
       chrome.tabs.sendMessage(tabs[0].id,{msg:"getcolor"},function(response){
-        colors = response.backgroundcolor;
-        console.log('Original: '+colors);
+        //colors = response.backgroundcolor;
+        //console.log('Original: '+colors);
         for(i in response){
           for(j in response[i]){
             //console.log(document.getElementsByClassName(j));
@@ -24,10 +24,22 @@ document.addEventListener('DOMContentLoaded', function(){
  
   [].forEach.call(document.getElementsByTagName('input'),function(inputElement) {
     (inputElement.type === 'range')?inputElement.addEventListener('input',function(e){
+      
       e.currentTarget.previousSibling.previousSibling.value = e.currentTarget.value;
-      //e.currentTarget.previousSibling.text = 'x';
+
+      for(var i in colors){
+        colors[i] = parseFloat((e.currentTarget.parentNode.querySelectorAll('input[type=range][class='+i+']')[0].value));
+      }
+      var fieldSetId = e.currentTarget.parentNode.id;
+      chrome.tabs.query({active: true, currentWindow: true},function(tabs){
+        console.log(fieldSetId);
+          /*tabs.sendMessage sends message to content script that are part of the present tab */     
+          chrome.tabs.sendMessage(tabs[0].id,{msg:"setcolor", element: fieldSetId, colors: colors},function(response){
+            console.log(response);
+        });
+      });
+      
     }):inputElement.addEventListener('change',function(e){
-      //console.log(e.currentTarget.nextSibling.nextSibling.value);
       e.currentTarget.nextSibling.nextSibling.value = e.currentTarget.value;
     });
   }, this);

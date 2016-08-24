@@ -19,8 +19,13 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
   }
   if(message.msg=="setcolor"){
-    console.log(message.colors);
-      document.body.style.backgroundColor = 'hsl('+message.colors.h+', '+message.colors.s +'%, '+message.colors.l+'%)';
+    var newColor = 'hsl('+message.colors.h+', '+message.colors.s +'%, '+message.colors.l+'%)';
+    if(message.element === 'backgroundcolor'){
+      document.body.style.backgroundColor = newColor;
+    }else{
+      document.body.style.color = newColor;
+    }
+     sendResponse('x');
   }
   return true;
 });
